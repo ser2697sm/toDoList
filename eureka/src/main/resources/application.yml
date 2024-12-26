@@ -1,0 +1,17 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: eureka
+
+eureka:
+  instance:
+    #Activa el descubrimiento por IP, es decir, los servicios con su IP en vez de por su hostname
+    prefer-ip-address: true
+  client:
+    #Eureka no necesita registrarse a si mismo
+    register-with-eureka: false
+    #Tampoco necesita recuperar la lista de servicios disponibles (Eureka no envia solicitudes)
+    #Eureka solo registra los servicios que le envian una peticion para registrarse
+    fetchRegistry: false

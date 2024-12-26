@@ -1,0 +1,36 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: cliente-task-service
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/todoList
+    username: root
+    password: 260697
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+    #Indica que debe registrarse en eureka
+    register-with-eureka: true
+    #Indica que puede obtener una lista de servicios registrados en Eureka
+    fetch-registry: true
+    healthcheck:
+      # Habilita comprobaciones de salud( heart beats)
+      enabled: true
+  instance:
+    # ID de instancia, con este id se registran en eureka
+    instance-id: ${spring.application.name}:${random.uuid}
+    # Frecuencia de heartbeats
+    lease-renewal-interval-in-seconds: 28
+    # Tiempo limite para se considere fallido
+    lease-expiration-duration-in-seconds: 65
